@@ -1,9 +1,6 @@
 export const personalInfo = {
   name: "Aravindraj M",
   role: "AI/ML Enthusiast | Computer Vision Developer | B.Tech AI & DS Student",
-  college: "Kumaraguru College of Technology, Coimbatore",
-  education: "B.Tech Artificial Intelligence and Data Science",
-  educationPeriod: "2024-2028",
   email: "aravind040806@gmail.com",
   phone: "7305730779",
   location: "Coimbatore, Tamil Nadu",
@@ -20,6 +17,7 @@ export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Achievements", href: "#achievements" },
   { label: "Education", href: "#education" },
   { label: "Profiles", href: "#profiles" },
   { label: "Contact", href: "#contact" },
@@ -29,7 +27,7 @@ export const skillGroups = [
   {
     title: "Languages",
     icon: "Code2",
-    items: ["C", "C++", "Python"],
+    items: ["C", "C++", "Python", "Java"],
   },
   {
     title: "AI/ML",
@@ -44,7 +42,7 @@ export const skillGroups = [
   {
     title: "Backend",
     icon: "Server",
-    items: ["FastAPI"],
+    items: ["FastAPI", "REST API"],
   },
   {
     title: "Database",
@@ -59,7 +57,7 @@ export const skillGroups = [
   {
     title: "Frontend",
     icon: "Monitor",
-    items: ["HTML", "CSS", "JavaScript", "React basics"],
+    items: ["HTML", "CSS", "JavaScript", "React"],
   },
 ];
 
@@ -99,6 +97,21 @@ export const projects = [
       "Created an automation workflow for booking-related communication using n8n and WhatsApp automation concepts.",
     techStack: ["n8n", "Automation Workflow", "Webhooks"],
     outcomes: ["Workflow automation", "Webhook logic", "Booking communication"],
+  },
+];
+
+export const achievements = [
+  {
+    title: "Maatram Hackforge 2.0",
+    result: "2nd Place",
+    description: "Secured 2nd Place in Maatram Hackforge 2.0.",
+    icon: "Trophy",
+  },
+  {
+    title: "iQube Innovation Center",
+    result: "AI/ML Level 1 Member",
+    description: "Selected as AI/ML Level 1 Member at iQube Innovation Center.",
+    icon: "Award",
   },
 ];
 
@@ -156,11 +169,5 @@ export const contactLinks = [
     value: "github.com/Aravindraj0007",
     href: "https://github.com/Aravindraj0007",
     icon: "Github",
-  },
-  {
-    label: "LeetCode",
-    value: "leetcode.com/u/aravindraj4131",
-    href: "https://leetcode.com/u/aravindraj4131/",
-    icon: "Code2",
   },
 ];

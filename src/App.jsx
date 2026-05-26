@@ -1,4 +1,5 @@
 import About from "./components/About";
+import Achievements from "./components/Achievements";
 import CodingProfiles from "./components/CodingProfiles";
 import Contact from "./components/Contact";
 import Education from "./components/Education";
@@ -17,6 +18,7 @@ function App() {
         <About />
         <Skills />
         <Projects />
+        <Achievements />
         <Education />
         <CodingProfiles />
         <Contact />

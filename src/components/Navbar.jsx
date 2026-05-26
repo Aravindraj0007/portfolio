@@ -11,6 +11,16 @@ function Navbar() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 24, restDelta: 0.001 });
 
   const closeMenu = () => setOpen(false);
+  const handleNavClick = (event, href) => {
+    event.preventDefault();
+    closeMenu();
+
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    window.history.pushState(null, "", href);
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-night-950/72 backdrop-blur-xl">
@@ -50,6 +60,8 @@ function Navbar() {
           type="button"
           className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white lg:hidden"
           aria-label={open ? "Close navigation" : "Open navigation"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
           onClick={() => setOpen((value) => !value)}
         >
           {open ? <X size={20} /> : <Menu size={20} />}
@@ -59,6 +71,7 @@ function Navbar() {
       <AnimatePresence>
         {open ? (
           <motion.div
+            id="mobile-navigation"
             className="border-t border-white/10 bg-night-950/95 px-5 py-5 backdrop-blur-xl lg:hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
@@ -70,7 +83,7 @@ function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={closeMenu}
+                  onClick={(event) => handleNavClick(event, link.href)}
                   className="focus-ring rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-medium text-slate-200"
                 >
                   {link.label}

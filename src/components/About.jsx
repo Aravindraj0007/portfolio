@@ -31,27 +31,15 @@ function About() {
           description="A compact snapshot of my current direction, strengths, and engineering interests."
         />
 
-        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-start gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div
-            className="glass-card glow-line rounded-lg p-6 sm:p-8"
+            className="glass-card glow-line rounded-lg p-6 sm:p-7"
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.55 }}
           >
             <p className="text-lg leading-9 text-slate-200">{personalInfo.about}</p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
-                <p className="text-sm text-slate-400">College</p>
-                <p className="mt-2 font-semibold text-white">{personalInfo.college}</p>
-              </div>
-              <div className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
-                <p className="text-sm text-slate-400">Education</p>
-                <p className="mt-2 font-semibold text-white">
-                  {personalInfo.education}, {personalInfo.educationPeriod}
-                </p>
-              </div>
-            </div>
           </motion.div>
 
           <div className="grid gap-4">
