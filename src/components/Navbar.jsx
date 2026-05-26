@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navLinks, personalInfo } from "../data/portfolio";
 import { icons } from "./icons";
 
@@ -7,20 +7,37 @@ const { Menu, X, Download } = icons;
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [targetHref, setTargetHref] = useState("");
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 24, restDelta: 0.001 });
 
   const closeMenu = () => setOpen(false);
   const handleNavClick = (event, href) => {
     event.preventDefault();
+    setTargetHref(href);
     closeMenu();
-
-    const target = document.querySelector(href);
-    if (!target) return;
-
-    window.history.pushState(null, "", href);
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  useEffect(() => {
+    if (open || !targetHref) return;
+
+    const target = document.getElementById(targetHref.slice(1));
+    if (!target) {
+      setTargetHref("");
+      return;
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      const navHeight = document.querySelector("header nav")?.getBoundingClientRect().height ?? 64;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+
+      window.history.pushState(null, "", targetHref);
+      window.scrollTo({ top: Math.max(targetTop, 0), behavior: "smooth" });
+      setTargetHref("");
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [open, targetHref]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-night-950/72 backdrop-blur-xl">
@@ -38,6 +55,7 @@ function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              onClick={(event) => handleNavClick(event, link.href)}
               className="focus-ring rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white"
             >
               {link.label}

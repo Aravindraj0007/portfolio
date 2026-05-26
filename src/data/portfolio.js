@@ -15,10 +15,10 @@ export const personalInfo = {
 
 export const navLinks = [
   { label: "About", href: "#about" },
+  { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Achievements", href: "#achievements" },
-  { label: "Education", href: "#education" },
   { label: "Profiles", href: "#profiles" },
   { label: "Contact", href: "#contact" },
 ];
