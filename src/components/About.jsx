@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { personalInfo } from "../data/portfolio";
+import { achievements, personalInfo } from "../data/portfolio";
 import SectionHeader from "./SectionHeader";
 import { icons } from "./icons";
 
@@ -32,15 +32,47 @@ function About() {
         />
 
         <div className="grid items-start gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <motion.div
-            className="glass-card glow-line rounded-lg p-6 sm:p-7"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.55 }}
-          >
-            <p className="text-lg leading-9 text-slate-200">{personalInfo.about}</p>
-          </motion.div>
+          <div className="grid gap-4">
+            <motion.div
+              className="glass-card glow-line rounded-lg p-6 sm:p-7"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.55 }}
+            >
+              <p className="text-lg leading-9 text-slate-200">{personalInfo.about}</p>
+            </motion.div>
+
+            {achievements.map((achievement) => {
+              const Icon = icons[achievement.icon];
+              return (
+                <motion.article
+                  key={achievement.title}
+                  className="glass-card glow-line rounded-lg p-5 sm:p-6"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.5, delay: 0.08 }}
+                >
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300">Achievement</p>
+                  <div className="mt-4 flex items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-violet-300/25 bg-violet-300/10 text-violet-200">
+                      <Icon size={21} />
+                    </span>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-bold text-white">{achievement.title}</h3>
+                        <span className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-bold text-cyan-100">
+                          {achievement.result}
+                        </span>
+                      </div>
+                      <p className="mt-2 leading-7 text-slate-300">{achievement.description}</p>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
 
           <div className="grid gap-4">
             {focusAreas.map((area, index) => {

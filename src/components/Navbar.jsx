@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { navLinks, personalInfo } from "../data/portfolio";
 import { icons } from "./icons";
 
-const { Menu, X, Download } = icons;
+const { Menu, X, ExternalLink } = icons;
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -66,10 +66,11 @@ function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href={personalInfo.resumePath}
-            download
+            target="_blank"
+            rel="noreferrer"
             className="focus-ring inline-flex items-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-300/20"
           >
-            <Download size={16} />
+            <ExternalLink size={16} />
             Resume
           </a>
         </div>
@@ -109,12 +110,13 @@ function Navbar() {
               ))}
               <a
                 href={personalInfo.resumePath}
-                download
+                target="_blank"
+                rel="noreferrer"
                 onClick={closeMenu}
                 className="focus-ring mt-2 inline-flex items-center justify-center gap-2 rounded-lg border border-cyan-300/40 bg-cyan-300/10 px-4 py-3 text-sm font-semibold text-cyan-100"
               >
-                <Download size={16} />
-                Download Resume
+                <ExternalLink size={16} />
+                View Resume
               </a>
             </div>
           </motion.div>

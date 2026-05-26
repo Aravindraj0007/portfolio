@@ -15,10 +15,8 @@ export const personalInfo = {
 
 export const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Achievements", href: "#achievements" },
   { label: "Profiles", href: "#profiles" },
   { label: "Contact", href: "#contact" },
 ];
@@ -107,21 +105,6 @@ export const achievements = [
     description: "Secured 2nd Place in Maatram Hackforge 2.0.",
     icon: "Trophy",
   },
-  {
-    title: "iQube Innovation Center",
-    result: "AI/ML Level 1 Member",
-    description: "Selected as AI/ML Level 1 Member at iQube Innovation Center.",
-    icon: "Award",
-  },
-];
-
-export const education = [
-  {
-    degree: "B.Tech Artificial Intelligence and Data Science",
-    institution: "Kumaraguru College of Technology, Coimbatore",
-    period: "2024-2028",
-    focus: "Computer Vision, Machine Learning, Intelligent Systems, and Data-Driven Applications",
-  },
 ];
 
 export const codingProfiles = [
@@ -142,32 +125,5 @@ export const codingProfiles = [
     handle: "aravindraj-m-35714632a",
     url: "https://linkedin.com/in/aravindraj-m-35714632a",
     icon: "Linkedin",
-  },
-];
-
-export const contactLinks = [
-  {
-    label: "Email",
-    value: "aravind040806@gmail.com",
-    href: "mailto:aravind040806@gmail.com",
-    icon: "Mail",
-  },
-  {
-    label: "Phone",
-    value: "7305730779",
-    href: "tel:+917305730779",
-    icon: "Phone",
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/aravindraj-m-35714632a",
-    href: "https://linkedin.com/in/aravindraj-m-35714632a",
-    icon: "Linkedin",
-  },
-  {
-    label: "GitHub",
-    value: "github.com/Aravindraj0007",
-    href: "https://github.com/Aravindraj0007",
-    icon: "Github",
   },
 ];

@@ -3,7 +3,7 @@ import profileImage from "../assets/profile.jpg";
 import { codingProfiles, personalInfo } from "../data/portfolio";
 import { icons } from "./icons";
 
-const { ArrowUpRight, Download, Github, Linkedin, Code2 } = icons;
+const { ArrowUpRight, ExternalLink, Github, Linkedin, Code2 } = icons;
 
 const socialIcons = {
   GitHub: Github,
@@ -26,11 +26,11 @@ const item = {
 
 function Hero() {
   return (
-    <section id="home" className="relative flex min-h-screen items-center overflow-hidden bg-hero-lines pt-24">
+    <section id="home" className="relative overflow-hidden bg-hero-lines pt-16">
       <div className="absolute inset-0 bg-grid bg-[length:44px_44px] opacity-40" />
       <div className="absolute inset-x-0 top-16 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent" />
 
-      <div className="section-shell relative z-10 grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
+      <div className="section-shell relative z-10 grid min-h-[calc(100vh-4rem)] items-center gap-10 py-8 lg:grid-cols-[1.05fr_0.95fr] lg:py-10">
         <motion.div variants={container} initial="hidden" animate="show" className="max-w-4xl">
           <motion.h1 variants={item} className="text-4xl font-black leading-[1.08] text-white sm:text-5xl lg:text-6xl">
             {personalInfo.heroIntro}
@@ -51,11 +51,12 @@ function Hero() {
             </a>
             <a
               href={personalInfo.resumePath}
-              download
+              target="_blank"
+              rel="noreferrer"
               className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-bold text-white transition hover:border-cyan-300/60 hover:bg-white/15"
             >
-              <Download size={18} />
-              Download Resume
+              <ExternalLink size={18} />
+              View Resume
             </a>
           </motion.div>
 

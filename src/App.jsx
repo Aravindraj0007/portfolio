@@ -1,8 +1,6 @@
 import About from "./components/About";
-import Achievements from "./components/Achievements";
 import CodingProfiles from "./components/CodingProfiles";
 import Contact from "./components/Contact";
-import Education from "./components/Education";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
@@ -16,10 +14,8 @@ function App() {
       <main>
         <Hero />
         <About />
-        <Education />
         <Skills />
         <Projects />
-        <Achievements />
         <CodingProfiles />
         <Contact />
       </main>
