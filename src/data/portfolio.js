@@ -72,7 +72,7 @@ export const projects = [
   {
     title: "PatientPath AI - Hospital Flow Optimization",
     icon: "Hospital",
-    github: "https://github.com/Kishore-mp45/SANKARA_INNOVATION_CHALLENGE_2026.git",
+    github: "https://github.com/Aravindraj0007/Sankara-Innovation-Challenge-2026.git",
     description:
       "Built a real-time hospital monitoring system for 7 departments using YOLO-based occupancy tracking. Developed ML models for wait time prediction, bottleneck detection, staff allocation, and risk scoring with automated alerts and recommendations.",
     techStack: ["YOLO", "FastAPI", "OpenCV", "MySQL", "n8n", "WebSockets", "Chart.js"],
