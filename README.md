@@ -1,75 +1,75 @@
-# Hi, I'm Aravindraj M
+# Aravindraj M — AI/ML Portfolio
 
-AI/ML enthusiast, Computer Vision developer, and B.Tech Artificial Intelligence and Data Science student from Coimbatore, Tamil Nadu.
+Personal portfolio site for Aravindraj M, a B.Tech Artificial Intelligence and Data Science student and Computer Vision developer from Coimbatore, Tamil Nadu. It showcases projects, skills, achievements, and a contact form.
 
-I build practical AI solutions using computer vision, machine learning, backend APIs, automation workflows, and data-driven systems.
+## Tech Stack
 
-## About Me
+- [React 18](https://react.dev) + [Vite](https://vitejs.dev)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Framer Motion](https://www.framer.com/motion/) for animations
+- [Three.js](https://threejs.org) via [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber) for the particle background
+- [lucide-react](https://lucide.dev) for icons
 
-- Studying B.Tech Artificial Intelligence and Data Science at Kumaraguru College of Technology, Coimbatore.
-- Interested in Computer Vision, Machine Learning, Deep Learning, and Intelligent Automation.
-- Building real-world AI projects with measurable impact.
-- Selected as AI/ML Level 1 Member at iQube Innovation Center.
-- Secured 2nd Place in Maatram Hackforge 2.0.
+## Getting Started
 
-## Technical Skills
+Requires Node.js 18 or newer.
 
-| Area | Skills |
+```bash
+npm install
+npm run dev
+```
+
+The dev server runs at http://localhost:5173.
+
+| Command | Description |
 | --- | --- |
-| Languages | C, C++, Python, Java |
-| AI/ML | Machine Learning, Deep Learning |
-| Computer Vision | OpenCV, MediaPipe, YOLO |
-| Backend | FastAPI, REST API |
-| Database | MySQL, SQLite |
-| Frontend | HTML, CSS, JavaScript, React |
-| Tools | Git, n8n, WebSockets, Chart.js |
+| `npm run dev` | Start the development server |
+| `npm run build` | Create a production build in `dist/` |
+| `npm run preview` | Preview the production build locally |
+
+## Project Structure
+
+```
+src/
+├── assets/          Profile photo and logo
+├── components/      Hero, About, Skills, Projects, Contact, Navbar, Footer, etc.
+│   └── three/       Three.js particle field
+├── data/portfolio.js  All portfolio content (projects, skills, links)
+├── motion.js        Shared animation variants
+├── theme.jsx        Theme (light/dark) provider
+└── index.css        Global styles
+public/              Static files (resume PDF, etc.)
+```
+
+## Customizing Content
+
+Projects, case studies, skills, and social links all live in [src/data/portfolio.js](src/data/portfolio.js). Edit that file to update the site — no component changes needed.
+
+## Contact Form
+
+The contact form sends messages through [Formspree](https://formspree.io):
+
+1. Create a free form on Formspree and copy its ID (the part after `https://formspree.io/f/`).
+2. Copy `.env.example` to `.env` and set `VITE_FORMSPREE_ID` to that ID.
+3. Add the same variable to your hosting provider's environment variables (e.g. Vercel).
+
+Without it, the form falls back to opening the visitor's email client.
+
+## Deployment
+
+The site is a static Vite build and deploys to any static host (Vercel, Netlify, GitHub Pages). Run `npm run build` and serve the `dist/` folder, or connect the repository to your host with:
+
+- Build command: `npm run build`
+- Output directory: `dist`
 
 ## Featured Projects
 
-### Bharatanatyam Mudra Detection
+- **Bharatanatyam Mudra Detection** — real-time hand gesture recognition with MediaPipe, OpenCV, and TensorFlow. [Repo](https://github.com/Aravindraj0007/mudra-identification)
+- **PatientPath AI** — hospital flow optimization with YOLO, FastAPI, and n8n. [Repo](https://github.com/Kishore-mp45/SANKARA_INNOVATION_CHALLENGE_2026.git)
+- **Smart Exam Cell Management System** — full-stack academic management with role-based access. [Repo](https://github.com/Aravindraj0007/SMART-EXAM-CELL-MANAGEMENT-SYSTEM.git)
+- **WhatsApp Automation Booking** — n8n webhook-based booking workflow. [Repo](https://github.com/Aravindraj0007/n8n-automation-booking.git)
 
-Real-time gesture recognition system using hand landmark detection and deep learning for mudra classification.
-
-- Tech stack: Python, OpenCV, MediaPipe, TensorFlow, YOLO
-- Highlights: Real-time feedback, custom dataset, multi-class classification
-- Repository: [mudra-identification](https://github.com/Aravindraj0007/mudra-identification)
-
-### PatientPath AI - Hospital Flow Optimization
-
-Hospital monitoring and optimization system for occupancy tracking, wait-time prediction, bottleneck detection, staff allocation, and automated alerts.
-
-- Tech stack: YOLO, FastAPI, OpenCV, MySQL, n8n, WebSockets, Chart.js
-- Highlights: 7 departments, risk scoring, automated recommendations
-- Repository: [SANKARA_INNOVATION_CHALLENGE_2026](https://github.com/Kishore-mp45/SANKARA_INNOVATION_CHALLENGE_2026.git)
-
-### Smart Exam Cell Management System
-
-Full-stack academic management system for students, exams, and results with role-based access, CRUD operations, search, pagination, and normalized database design.
-
-- Tech stack: HTML, CSS, JavaScript, MySQL
-- Highlights: Role-based access, multi-field search, pagination
-- Repository: [SMART-EXAM-CELL-MANAGEMENT-SYSTEM](https://github.com/Aravindraj0007/SMART-EXAM-CELL-MANAGEMENT-SYSTEM.git)
-
-### WhatsApp Automation Booking
-
-Automation workflow for booking-related communication using n8n and webhook-based automation concepts.
-
-- Tech stack: n8n, Automation Workflow, Webhooks
-- Highlights: Workflow automation, webhook logic, booking communication
-- Repository: [n8n-automation-booking](https://github.com/Aravindraj0007/n8n-automation-booking.git)
-
-## Achievements
-
-- Secured 2nd Place in Maatram Hackforge 2.0.
-- Selected as AI/ML Level 1 Member at iQube Innovation Center.
-
-## GitHub Stats
-
-![Aravindraj's GitHub stats](https://github-readme-stats.vercel.app/api?username=Aravindraj0007&show_icons=true&theme=tokyonight&hide_border=true)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Aravindraj0007&layout=compact&theme=tokyonight&hide_border=true)
-
-## Connect With Me
+## Contact
 
 - Email: [aravind040806@gmail.com](mailto:aravind040806@gmail.com)
 - LinkedIn: [linkedin.com/in/aravindraj-m-35714632a](https://linkedin.com/in/aravindraj-m-35714632a)

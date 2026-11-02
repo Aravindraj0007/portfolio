@@ -5,10 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="AI/ML project showcase portfolio for Aravindraj M, Computer Vision Developer and B.Tech AI & DS student."
+      content="Aravindraj M is an AI engineer building AI agents, RAG pipelines, machine learning and computer vision applications."
     />
-    <meta name="theme-color" content="#050816" />
-    <title>Aravindraj M | AI/ML Portfolio</title>
+    <meta name="theme-color" content="#070a0f" />
+    <script>
+      // Apply the saved theme (dark by default) before first paint to avoid a flash of the wrong theme.
+      (function () {
+        var theme = "dark";
+        try {
+          theme = localStorage.getItem("theme") || "dark";
+        } catch (e) {}
+        document.documentElement.classList.toggle("dark", theme === "dark");
+      })();
+    </script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aravindraj M | AI Engineer" />
+    <meta
+      property="og:description"
+      content="AI agents, RAG pipelines, machine learning and computer vision, taken from prototype to working applications."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Aravindraj M | AI Engineer</title>
   </head>
   <body>
     <div id="root"></div>

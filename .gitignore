@@ -9,3 +9,4 @@ yarn-error.log*
 pnpm-debug.log*
 vite-*.log
 vite-*.err
+!.env.example
