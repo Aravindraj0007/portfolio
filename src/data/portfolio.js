@@ -7,6 +7,8 @@ export const personalInfo = {
   resumePath: "/resume/Aravindraj_M.pdf",
   availability: "Open to opportunities",
   headline: "I build AI agents and intelligent systems that solve real problems.",
+  // Cycled through by the typing line in the hero.
+  focusAreas: ["AI agents", "RAG pipelines", "LLM apps", "computer vision", "ML models"],
   heroText:
     "AI agents, RAG pipelines, machine learning and computer vision, taken from prototype to working applications.",
   about: [
@@ -17,11 +19,32 @@ export const personalInfo = {
 };
 
 export const navLinks = [
-  { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
+  { label: "Work", href: "#work" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
+
+// The four numbered glass cards along the bottom of the hero.
+export const services = [
+  {
+    title: "AI Agents & RAG",
+    text: "LLM agents and retrieval pipelines with LangChain and LangGraph that answer from your own data.",
+  },
+  {
+    title: "Computer Vision",
+    text: "Real-time detection and gesture recognition with YOLO, OpenCV and MediaPipe.",
+  },
+  {
+    title: "Machine Learning",
+    text: "Models for prediction, risk scoring and classification, trained and checked against the real task.",
+  },
+  {
+    title: "APIs & Automation",
+    text: "FastAPI backends, live dashboards and n8n workflows that put the models to work.",
+  },
+];
+
 
 export const highlights = [
   {

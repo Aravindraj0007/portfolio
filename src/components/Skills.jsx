@@ -1,128 +1,126 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { skillGroups } from "../data/portfolio";
 import { reveal3d } from "../motion";
 import SectionHeader from "./SectionHeader";
-import TiltCard from "./TiltCard";
 import { icons } from "./icons";
 
-const allSkills = [...new Set(skillGroups.flatMap((group) => group.items))];
+const allSkills = skillGroups.flatMap((group) => group.items);
+// Three orbits around the particle tree: canopy, trunk, and down by the floor.
+const RINGS = [
+  { y: -0.32, radius: 0.36, speed: 0.12 },
+  { y: 0.02, radius: 0.44, speed: -0.09 },
+  { y: 0.3, radius: 0.4, speed: 0.07 },
+];
 
-function SkillChip({ skill, large = false }) {
-  return (
-    <li
-      className={`rounded-lg border border-line bg-paper/60 font-medium text-ink-soft transition duration-200 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent hover:shadow-[0_0_18px_rgb(var(--accent)/0.25)] ${
-        large ? "px-3.5 py-2 text-sm" : "px-3 py-1.5 text-[13px]"
-      }`}
-    >
-      {skill}
-    </li>
-  );
-}
+const perRing = Math.ceil(allSkills.length / RINGS.length);
+const pills = allSkills.map((skill, index) => {
+  const ring = index % RINGS.length;
+  const slot = Math.floor(index / RINGS.length);
+  return { skill, ring, angle: (slot / perRing) * Math.PI * 2 + ring * 0.7 };
+});
 
-function CardHeading({ group, large = false, showCount = true }) {
-  const Icon = icons[group.icon];
+// Skill pills orbiting in 3D. Positions are written straight to the DOM each frame to avoid re-rendering.
+function SkillOrbit() {
+  const containerRef = useRef(null);
+  const pillRefs = useRef([]);
+  const reducedMotion = useReducedMotion();
+
+
+  useEffect(() => {
+    let frame;
+    let visible = true;
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+    });
+    observer.observe(containerRef.current);
+    const start = performance.now();
+
+    const place = (now) => {
+      const box = containerRef.current;
+      if (box && visible) {
+        const width = box.clientWidth;
+        const height = box.clientHeight;
+        const t = reducedMotion ? 0 : (now - start) / 1000;
+        pills.forEach((pill, i) => {
+          const el = pillRefs.current[i];
+          if (!el) return;
+          const ring = RINGS[pill.ring];
+          const angle = pill.angle + t * ring.speed;
+          const depth = Math.cos(angle); // 1 = front, -1 = back
+          const x = Math.sin(angle) * ring.radius * width;
+          const y = ring.y * height + depth * 0.04 * height;
+          const scale = 0.7 + (depth + 1) * 0.2;
+          el.style.transform = `translate(-50%, -50%) translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+          el.style.opacity = String(0.25 + (depth + 1) * 0.375);
+          el.style.zIndex = String(Math.round((depth + 1) * 50));
+          el.style.filter = depth < -0.3 ? "blur(1.5px)" : "none";
+        });
+      }
+      if (!reducedMotion) frame = requestAnimationFrame(place);
+    };
+    frame = requestAnimationFrame(place);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [reducedMotion]);
+
   return (
-    <div className="flex items-start justify-between gap-4 [transform:translateZ(30px)]">
-      <div className="flex items-center gap-3">
+    <div ref={containerRef} aria-hidden="true" className="relative mx-auto h-[26rem] max-w-5xl sm:h-[34rem]">
+      {pills.map((pill, i) => (
         <span
-          className={`flex shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent ring-1 ring-accent/20 ${
-            large ? "h-12 w-12" : "h-10 w-10"
-          }`}
+          key={pill.skill}
+          ref={(el) => {
+            pillRefs.current[i] = el;
+          }}
+          className="glass absolute left-1/2 top-1/2 whitespace-nowrap rounded-full px-4 py-2 text-[13px] font-medium text-ink shadow-lg shadow-black/20 sm:px-5 sm:py-2.5 sm:text-sm"
         >
-          <Icon size={large ? 24 : 19} aria-hidden="true" />
+          {pill.skill}
         </span>
-        <h3 className={`font-semibold tracking-tight text-ink ${large ? "text-2xl" : "text-lg"}`}>{group.title}</h3>
-      </div>
-      {showCount ? <span className="font-mono text-xs text-ink-muted">{String(group.items.length).padStart(2, "0")}</span> : null}
-    </div>
-  );
-}
-
-// Infinite ticker of every skill; the list is rendered twice so the loop is seamless.
-function SkillTicker() {
-  return (
-    <div
-      className="group relative mb-10 overflow-hidden border-y border-line py-4 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
-      aria-hidden="true"
-    >
-      <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] motion-reduce:animate-none">
-        {[...allSkills, ...allSkills].map((skill, index) => (
-          <span
-            key={`${skill}-${index}`}
-            className="flex items-center gap-10 pr-10 font-mono text-sm uppercase tracking-[0.15em] text-ink-muted"
-          >
-            {skill}
-            <span className="h-1 w-1 rounded-full bg-accent" />
-          </span>
-        ))}
-      </div>
+      ))}
     </div>
   );
 }
 
 function Skills() {
-  const [featured, ...rest] = skillGroups;
-  const strip = rest.pop();
-
   return (
-    <section id="skills" className="border-t border-line py-20 sm:py-24">
+    <section id="skills" className="overflow-x-clip py-24 sm:py-32">
       <div className="section-shell">
         <SectionHeader
           index="03"
-          label="Skills"
+          label="Core stack"
           title="The stack I use to ship AI features."
           description="From AI agents and RAG to computer vision, APIs and real-time dashboards."
         />
       </div>
 
-      <SkillTicker />
+      <SkillOrbit />
 
-      <div className="section-shell">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <motion.div className="md:col-span-2 lg:col-span-1 lg:row-span-2" {...reveal3d()}>
-            <TiltCard className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-accent/30 bg-surface/90 p-7">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent/20 blur-3xl"
-              />
-              <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.2em] text-accent [transform:translateZ(20px)]">
-                ● Core focus
-              </p>
-              <CardHeading group={featured} large />
-              <p className="mt-4 leading-7 text-ink-soft [transform:translateZ(20px)]">{featured.description}</p>
-              <ul className="mt-auto flex flex-wrap gap-2 pt-8 [transform:translateZ(40px)]">
-                {featured.items.map((skill) => (
-                  <SkillChip key={skill} skill={skill} large />
-                ))}
-              </ul>
-            </TiltCard>
-          </motion.div>
-
-          {rest.map((group, index) => (
-            <motion.div key={group.title} {...reveal3d(0.08 * (index + 1))}>
-              <TiltCard className="flex h-full flex-col rounded-2xl border border-line bg-surface/90 p-6 transition-colors hover:border-accent/40">
-                <CardHeading group={group} />
-                <p className="mt-3 text-sm leading-6 text-ink-muted [transform:translateZ(15px)]">{group.description}</p>
-                <ul className="mt-auto flex flex-wrap gap-2 pt-5 [transform:translateZ(30px)]">
+      <div className="section-shell mt-8">
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {skillGroups.map((group, index) => {
+            const Icon = icons[group.icon];
+            return (
+              <motion.li key={group.title} className="glass rounded-2xl p-5" {...reveal3d(0.05 * index)}>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                    <Icon size={18} aria-hidden="true" />
+                  </span>
+                  <h3 className="font-semibold text-ink">{group.title}</h3>
+                  <span className="ml-auto font-mono text-xs text-ink-muted">{String(group.items.length).padStart(2, "0")}</span>
+                </div>
+                <ul className="mt-4 flex flex-wrap gap-1.5">
                   {group.items.map((skill) => (
-                    <SkillChip key={skill} skill={skill} />
+                    <li key={skill} className="chip bg-transparent">
+                      {skill}
+                    </li>
                   ))}
                 </ul>
-              </TiltCard>
-            </motion.div>
-          ))}
-
-          <motion.div className="md:col-span-2 lg:col-span-3" {...reveal3d(0.1)}>
-            <TiltCard className="flex flex-col gap-4 rounded-2xl border border-line bg-surface/90 p-6 sm:flex-row sm:items-center sm:justify-between">
-              <CardHeading group={strip} showCount={false} />
-              <ul className="flex flex-wrap gap-2 [transform:translateZ(30px)]">
-                {strip.items.map((skill) => (
-                  <SkillChip key={skill} skill={skill} />
-                ))}
-              </ul>
-            </TiltCard>
-          </motion.div>
-        </div>
+              </motion.li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

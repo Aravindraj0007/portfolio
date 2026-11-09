@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 
 const ThemeContext = createContext({ theme: "dark", toggleTheme: () => {} });
 
-const BROWSER_THEME_COLORS = { dark: "#070a0f", light: "#fafaf9" };
+const BROWSER_THEME_COLORS = { dark: "#03040c", light: "#fafaf9" };
 
 // The initial class is set by the inline script in index.html, before first paint, to avoid a flash.
 export function ThemeProvider({ children }) {

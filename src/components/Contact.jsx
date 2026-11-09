@@ -11,6 +11,7 @@ const { ArrowUpRight, CheckCircle2, Loader2, Mail, Send, TriangleAlert } = icons
 // Without it, the form falls back to opening the visitor's email client.
 const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID;
 
+
 function openMailClient(formData) {
   const name = formData.get("name")?.toString().trim() || "Portfolio visitor";
   const email = formData.get("email")?.toString().trim() || "";
@@ -49,7 +50,7 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="border-t border-line py-20 sm:py-24">
+    <section id="contact" className="py-24 sm:py-32">
       <div className="section-shell grid gap-12 lg:grid-cols-[1fr_1.1fr]">
         <div>
           <SectionHeader
@@ -87,11 +88,12 @@ function Contact() {
               );
             })}
           </ul>
+
         </div>
 
         <motion.form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-line bg-surface/90 p-6 sm:p-8"
+          className="self-start glass rounded-2xl p-6 sm:p-8 lg:sticky lg:top-24"
           {...reveal3d(0.1)}
         >
           <div className="grid gap-5 sm:grid-cols-2">

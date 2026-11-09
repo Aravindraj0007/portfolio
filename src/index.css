@@ -18,8 +18,8 @@
 
   :root.dark {
     color-scheme: dark;
-    --paper: 7 10 15;
-    --surface: 13 18 26;
+    --paper: 3 4 12;
+    --surface: 14 18 34;
     --ink: 230 237 243;
     --ink-soft: 175 186 199;
     --ink-muted: 125 138 153;
@@ -80,6 +80,15 @@
 
   .btn-secondary {
     @apply focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-ink-muted;
+  }
+
+  .btn-accent {
+    @apply focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-paper shadow-[0_8px_30px_-8px_rgb(var(--accent)/0.7)] transition hover:brightness-110;
+  }
+
+  /* Frosted glass panel: lets the particle field show through. */
+  .glass {
+    @apply border border-line/80 bg-surface/45 backdrop-blur-xl;
   }
 
   .chip {

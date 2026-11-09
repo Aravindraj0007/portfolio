@@ -15,10 +15,10 @@ function Projects() {
   const closeModal = useCallback(() => setActiveSlug(null), []);
 
   return (
-    <section id="work" className="border-t border-line py-20 sm:py-24">
+    <section id="work" className="py-24 sm:py-32">
       <div className="section-shell">
         <SectionHeader
-          index="01"
+          index="02"
           label="Selected work"
           title="Projects that take AI from model to working product."
           description="Each one pairs a model or automation with the backend and interface around it. Open a case study for the problem, approach and result."
@@ -27,7 +27,7 @@ function Projects() {
         <ol className="grid gap-5 md:grid-cols-2">
           {projects.map((project, index) => (
             <motion.li key={project.slug} className="flex" {...reveal3d((index % 2) * 0.1)}>
-              <TiltCard className="flex w-full flex-col rounded-2xl border border-line bg-surface/90 p-6 transition-colors hover:border-accent/50 sm:p-7">
+              <TiltCard className="flex w-full flex-col glass rounded-2xl p-6 transition-colors hover:border-accent/50 sm:p-7">
                 <div className="flex items-center justify-between gap-4 [transform:translateZ(20px)]">
                   <p className="section-label">{project.category}</p>
                   <span className="font-mono text-sm text-ink-muted">{String(index + 1).padStart(2, "0")}</span>

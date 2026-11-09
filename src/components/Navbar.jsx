@@ -65,28 +65,36 @@ function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 border-b bg-paper/85 backdrop-blur-md transition-colors ${
-        scrolled || open ? "border-line" : "border-transparent"
+      className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
+        open ? "bg-paper/90 backdrop-blur-md" : scrolled ? "bg-gradient-to-b from-paper/80 to-transparent" : ""
       }`}
     >
-      <nav className="section-shell flex h-16 items-center justify-between">
-        <a href="#top" className="focus-ring rounded text-[15px] font-semibold tracking-tight text-ink" onClick={closeMenu}>
-          {personalInfo.name}
+      <nav className="section-shell relative flex h-20 items-center justify-between">
+        <a href="#top" className="focus-ring flex items-center gap-2.5 rounded text-[15px] font-semibold tracking-tight text-ink" onClick={closeMenu}>
+          <span className="font-mono text-accent">
+            [{personalInfo.initials}
+            <span className="text-ink">.</span>]
+          </span>
+          <span className="hidden sm:inline">{personalInfo.name}</span>
         </a>
 
-        <div className="hidden items-center gap-1 md:flex">
+        {/* Centered glass pill of section links */}
+        <div className="glass absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 rounded-full p-1 shadow-lg shadow-black/20 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(event) => handleNavClick(event, link.href)}
-              className="focus-ring rounded-full px-3.5 py-2 text-sm font-medium text-ink-soft transition hover:text-ink"
+              className="focus-ring rounded-full px-4 py-1.5 text-sm font-medium text-ink-soft transition hover:bg-ink/10 hover:text-ink"
             >
               {link.label}
             </a>
           ))}
+        </div>
+
+        <div className="hidden items-center gap-1 md:flex">
           <ThemeToggle />
-          <a href={personalInfo.resumePath} target="_blank" rel="noreferrer" className="btn-secondary ml-1 px-4 py-2">
+          <a href={personalInfo.resumePath} target="_blank" rel="noreferrer" className="btn-accent ml-1 px-5 py-2">
             Resume
           </a>
         </div>
